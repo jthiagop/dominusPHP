@@ -70,7 +70,7 @@ $pagina = 'admins';
                             ?>
                                 <tr>
                                     <td><?php echo $id ?></td>
-                                    <td class="table-plus"><?php echo $nome ?></td>
+                                    <td><?php echo $nome ?></td>
                                     <td><?php echo $email ?></td>
                                     <td><?php echo $cpf ?></td>
                                     <td><?php echo $endereco ?></td>
@@ -186,7 +186,8 @@ $pagina = 'admins';
     </div>
 </div>
 
-<div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" 
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-danger text-white">
             <form id="form-excluir" method="post">
@@ -195,15 +196,14 @@ $pagina = 'admins';
                         <i class="fa fa-exclamation-triangle"></i> ATENÇÂO
                     </h3>
                     <p>
-                        voce está preste a excluir um usuário! Deseja realmente excluir este registro: <span class="font-weight-bold" id="nome-excluir"></span>?
+                        voce está preste a excluir um usuário! Deseja realmente excluir este registro: <span class="font-weight-bold" id="nome-excluido"></span>?
                     </p>
 
                     <small>
                         <div id="mensagem-excluir"></div>
                     </small>
 
-                    <input type="hidden" class="form-control" name="id-excluir" id="id-excluir">
-                </div>
+                    <input type="hidden" class="form-control" name="id-excluir"  id="id-excluir">                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn-fechar-excluir">
                         Não 
