@@ -1,7 +1,7 @@
 <?php
 require_once('../../conexao.php');
 $id = @$_POST['id-excluir'];
-$pagina = 'bispos';
+$pagina = 'frades';
 
 //excluir a imagem 
 $query = $pdo->query("SELECT * FROM $pagina  where id = '$id' ");

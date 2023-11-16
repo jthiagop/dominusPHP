@@ -1,7 +1,7 @@
 <?php
 require_once('../conexao.php');
 require_once('verificar.php');
-$pagina = 'admins';
+$pagina = 'frades';
 ?>
 
 <div class="min-height-200px">
@@ -14,7 +14,7 @@ $pagina = 'admins';
                             <a href="index.php">Home</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Administradores
+                            Frades
                         </li>
                     </ol>
                 </nav>
@@ -22,14 +22,14 @@ $pagina = 'admins';
             <div class="col-md-6 col-sm-12 text-right">
                 <div class="dropdown">
                     <a class="btn btn-primary icon-copy bi bi-person-plus-fill" href="#" type="button" onclick="inserir()" data-toggle="modal" data-target="#modalForm">
-                        Novo Administrador
+                        Novo Frade
                     </a>
                 </div>
             </div>
         </div>
     </div>
     <?php
-    $query = $pdo->query("SELECT * FROM bispos order by nome asc");
+    $query = $pdo->query("SELECT * FROM $pagina order by nome asc");
     $res = $query->fetchAll(PDO::FETCH_ASSOC);
     $total_reg = count($res);
     if ($total_reg > 0) {
@@ -94,8 +94,7 @@ $pagina = 'admins';
                                                     '<?php echo $endereco ?>',
                                                     '<?php echo $foto ?>',
                                                     )" title="Editar Registro"><i class="dw dw-edit2" data-color="#265ed7"></i></a>
-                                            <a href="#" onclick="excluir('<?php echo $id ?>', '<?php echo $nome ?>')" title="Excluir Registro"><i 
-                                                    class="dw dw-delete-3" data-color="#e95959"></i> </a>
+                                            <a href="#" onclick="excluir('<?php echo $id ?>', '<?php echo $nome ?>')" title="Excluir Registro"><i class="dw dw-delete-3" data-color="#e95959"></i> </a>
                                             <a href="#" onclick="dados(
                                                     '<?php echo $nome ?>',
                                                     '<?php echo $email ?>', 
@@ -141,16 +140,15 @@ $pagina = 'admins';
                         <div id="mensagem"></div>
                     </small>
                     <div class="row">
-                        <div class="col-md-3 col-sm-12">
+                        <div class="col-3">
                             <div class="profile-photo" id="divImg">
-                                <img src="../src/images/membros/<?php echo $foto ?>" id="target" alt="Foto de Perfil" 
-                                    class=" my-2 profile-photo avatar-photo img-thumbnail" />
+                                <img src="../src/images/membros/<?php echo $foto ?>" id="target" alt="Foto de Perfil" class=" my-2 profile-photo avatar-photo img-thumbnail" />
                                 <input type="file" class="form-control-file" id="imagem" name="imagem" onChange="carregarImg();">
                             </div>
                         </div>
-                        <div class="col-md-9 col-sm-12">
+                        <div class="col-9">
                             <div class="row">
-                                <div class="col-md-7 col-sm-12">
+                                <div class="col-7">
                                     <div class="input-group custom">
                                         <input type="text" id="nome" name="nome" class="form-control form-control-lg" placeholder="Digite o Nome" required />
                                         <div class="input-group-append custom">
@@ -158,7 +156,7 @@ $pagina = 'admins';
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-5 col-sm-12">
+                                <div class="col-5">
                                     <div class="input-group custom">
                                         <input type="text" id="cpf" name="cpf" class="form-control form-control-lg" placeholder="Digite o CPF" required />
                                         <div class="input-group-append custom">

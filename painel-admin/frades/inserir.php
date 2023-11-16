@@ -1,7 +1,7 @@
 <?php
 require_once('../../conexao.php');
 
-$pagina = 'bispos';
+$pagina = 'frades';
 
 $nome = $_POST['nome'];
 $cpf = $_POST['cpf'];
@@ -68,7 +68,7 @@ if ($id == '' || $id == 0) {
     $ult_id = $pdo->lastInsertId();
 
     $query = $pdo->prepare("INSERT INTO usuarios SET nome = :nome, email = :email, 
-        cpf = :cpf, senha = '$cpf', nivel = 'bispo', id_pessoa = '$ult_id' ");
+        cpf = :cpf, senha = '$cpf', nivel = 'frade', id_pessoa = '$ult_id' ");
 
     $query->bindValue(":nome", "$nome");
     $query->bindValue(":email", "$email");
@@ -97,7 +97,7 @@ if ($id == '' || $id == 0) {
     $query->execute();
 
     $query = $pdo->prepare("UPDATE usuarios SET nome = :nome, email = :email, 
-        cpf = :cpf where id_pessoa = '$id' and nivel = 'bispo'");
+        cpf = :cpf where id_pessoa = '$id' and nivel = 'frade'");
 
     $query->bindValue(":nome", "$nome");
     $query->bindValue(":email", "$email");

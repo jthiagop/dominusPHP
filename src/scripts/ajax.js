@@ -89,3 +89,29 @@ $("#form-excluir").submit(function () {
     });
 
 });
+
+
+function carregarImg() {
+    var target = document.getElementById('target');
+    var file = document.querySelector("input[type=file]").files[0];
+    var arquivo = file['name'];
+    resultado = arquivo.split(".", 2);
+        //console.log(resultado[1]);
+        if(resultado[1] === 'pdf'){
+            $('#target').attr('src', "../img/pdf.png");
+            return;
+        }
+
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+            target.src = reader.result;
+        };
+
+        if (file) {
+            reader.readAsDataURL(file);
+
+        } else {
+            target.src = "";
+        }
+    }

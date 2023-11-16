@@ -277,6 +277,7 @@ if ($pag == '') {
 						</a>
 						<ul class="submenu">
 							<li><a href="index.php?pag=admins">Administrador</a></li>
+							<li><a href="index.php?pag=frades">Frades</a></li>
 							<li><a href="index2.html">Usuários</a></li>
 							<li><a href="index3.html">Dashboard style 3</a></li>
 						</ul>
@@ -381,6 +382,8 @@ if ($pag == '') {
 						<button type="submit" class="btn btn-primary">Salvar</button>
 					</div>
 				</form>
+
+				
 			</div>
 		</div>
 	</div>

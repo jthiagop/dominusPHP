@@ -27,7 +27,7 @@ $total_reg = count($res);
 //INSERIR REGISTROS INICIAIS 
 if($total_reg == 0) {
     $pdo->query("INSERT INTO bispos SET nome = 'Super Administrador', email = '$email_super_adm', 
-        cpf = '109.824.874-01', telefone = '(87) 9.9977-1225' "
+        cpf = '109.824.874-01', telefone = '(87) 9.9977-1225', foto = 'sem-foto.jpg' "
     );}
 
 
