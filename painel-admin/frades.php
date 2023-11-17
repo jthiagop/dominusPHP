@@ -29,7 +29,7 @@ $pagina = 'frades';
         </div>
     </div>
     <?php
-    $query = $pdo->query("SELECT * FROM $pagina order by nome asc");
+    $query = $pdo->query("SELECT * FROM frades order by nome asc");
     $res = $query->fetchAll(PDO::FETCH_ASSOC);
     $total_reg = count($res);
     if ($total_reg > 0) {
@@ -38,7 +38,7 @@ $pagina = 'frades';
             <!-- Simple Datatable Simples -->
             <div class="card-box mb-30">
                 <div class="pd-20">
-                    <h4 class="text-blue h4">Registro de Frades</h4>
+                    <h4 class="text-blue h4">Registro de Administradores</h4>
                 </div>
                 <div class="pb-20">
                     <table id="administradores" class="data-table table stripe hover nowrap">
@@ -140,15 +140,15 @@ $pagina = 'frades';
                         <div id="mensagem"></div>
                     </small>
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-md-3 col-sm-12">
                             <div class="profile-photo" id="divImg">
                                 <img src="../src/images/membros/<?php echo $foto ?>" id="target" alt="Foto de Perfil" class=" my-2 profile-photo avatar-photo img-thumbnail" />
                                 <input type="file" class="form-control-file" id="imagem" name="imagem" onChange="carregarImg();">
                             </div>
                         </div>
-                        <div class="col-9">
+                        <div class="col-md-9 col-sm-12">
                             <div class="row">
-                                <div class="col-7">
+                                <div class="col-md-7 col-sm-12">
                                     <div class="input-group custom">
                                         <input type="text" id="nome" name="nome" class="form-control form-control-lg" placeholder="Digite o Nome" required />
                                         <div class="input-group-append custom">
@@ -156,7 +156,7 @@ $pagina = 'frades';
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-5">
+                                <div class="col-md-5 col-sm-12">
                                     <div class="input-group custom">
                                         <input type="text" id="cpf" name="cpf" class="form-control form-control-lg" placeholder="Digite o CPF" required />
                                         <div class="input-group-append custom">
@@ -251,7 +251,14 @@ $pagina = 'frades';
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="profile-photo" id="divImg">
+                                <img src="../src/images/membros/<?php echo $foto ?>" id="foto-dados" alt="Foto de Perfil" class=" my-2 profile-photo avatar-photo img-thumbnail" width="500px" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div class="row">
@@ -341,6 +348,7 @@ $pagina = 'frades';
         $('#cpf-dados').text(cpf);
         $('#telefone-dados').text(telefone);
         $('#endereco-dados').text(endereco);
+        $('#foto-dados').attr('src','../src/images/membros/' + foto);
 
         var myModal = new bootstrap.Modal(document.getElementById('modalDados'), {});
         myModal.show();

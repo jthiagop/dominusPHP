@@ -94,8 +94,7 @@ $pagina = 'admins';
                                                     '<?php echo $endereco ?>',
                                                     '<?php echo $foto ?>',
                                                     )" title="Editar Registro"><i class="dw dw-edit2" data-color="#265ed7"></i></a>
-                                            <a href="#" onclick="excluir('<?php echo $id ?>', '<?php echo $nome ?>')" title="Excluir Registro"><i 
-                                                    class="dw dw-delete-3" data-color="#e95959"></i> </a>
+                                            <a href="#" onclick="excluir('<?php echo $id ?>', '<?php echo $nome ?>')" title="Excluir Registro"><i class="dw dw-delete-3" data-color="#e95959"></i> </a>
                                             <a href="#" onclick="dados(
                                                     '<?php echo $nome ?>',
                                                     '<?php echo $email ?>', 
@@ -143,8 +142,7 @@ $pagina = 'admins';
                     <div class="row">
                         <div class="col-md-3 col-sm-12">
                             <div class="profile-photo" id="divImg">
-                                <img src="../src/images/membros/<?php echo $foto ?>" id="target" alt="Foto de Perfil" 
-                                    class=" my-2 profile-photo avatar-photo img-thumbnail" />
+                                <img src="../src/images/membros/<?php echo $foto ?>" id="target" alt="Foto de Perfil" class=" my-2 profile-photo avatar-photo img-thumbnail" />
                                 <input type="file" class="form-control-file" id="imagem" name="imagem" onChange="carregarImg();">
                             </div>
                         </div>
@@ -253,7 +251,14 @@ $pagina = 'admins';
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="profile-photo" id="divImg">
+                                <img src="../src/images/membros/<?php echo $foto ?>" id="foto-dados" alt="Foto de Perfil" class=" my-2 profile-photo avatar-photo img-thumbnail" width="500px" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div class="row">
@@ -343,6 +348,7 @@ $pagina = 'admins';
         $('#cpf-dados').text(cpf);
         $('#telefone-dados').text(telefone);
         $('#endereco-dados').text(endereco);
+        $('#foto-dados').attr('src','../src/images/membros/' + foto);
 
         var myModal = new bootstrap.Modal(document.getElementById('modalDados'), {});
         myModal.show();
