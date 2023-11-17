@@ -238,83 +238,56 @@ $pagina = 'frades';
 </div>
 
 
-<div class="modal fade bs-example-modal-lg" id="modalDados" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myLargeModalLabel">
-                    Informações de Registro
-                </h4>
+<div class="modal fade" id="modalDados" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="login-box bg-white box-shadow border-radius-10">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                     ×
                 </button>
+                <h4 class="text-center text-primary">
+                    Informações de Registro
+                </h4>
+            <div class="modal-body pd-5">
+                <div class="profile-photo" id="divImg">
+                    <img src="../src/images/membros/<?php echo $foto ?>" id="foto-dados" alt="Foto de Perfil" class=" my-2 profile-photo avatar-photo img-thumbnail" width="500px" />
+                </div>
             </div>
-            <div class="modal-body">
+            <form>
+                <h5 class="text-center h5 mb-0" id="nome-dados"></h5>
+                <p class="text-center text-muted font-14">
+                    Lorem ipsum dolor sit amet
+                </p>
+                <div class="profile-info">
+                    <ul>
+                        <li>
+                            <span>Email:</span>
+                            <p class="text-muted mb-0" id="email-dados"></p                        </li>
+                        <li>
+                            <span>Telefone:</span>
+                            <p class="text-muted mb-0" id="telefone-dados"></p>
+                        </li>
+                        <li>
+                            <span>CPF:</span>
+                            <p class="text-muted mb-0" id="cpf-dados"></p>
+                        </li>
+                        <li>
+                            <span>Endereço: <div class="text-muted mb-0" id="endereco-dados"></div></span>
+                            
+                        </li>
+                    </ul>
+                </div>
                 <div class="row">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="profile-photo" id="divImg">
-                                <img src="../src/images/membros/<?php echo $foto ?>" id="foto-dados" alt="Foto de Perfil" class=" my-2 profile-photo avatar-photo img-thumbnail" width="500px" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-0">Nome Completo: </p>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-muted mb-0" id="nome-dados"></p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-0">E-mail: </p>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-muted mb-0" id="email-dados"></p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-0">Telefone : </p>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-muted mb-0" id="telefone-dados"></p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-0">CPF :</p>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-muted mb-0" id="cpf-dados"></p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-0">Endereço :</p>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-muted mb-0" id="endereco-dados"></p>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="col-sm-12">
+                        <div class="input-group mb-0">
+                            <!--
+																use code for form submit
+																<input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
+															-->
+                            <button class="btn btn-primary btn-lg btn-block" >Sair</button>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                    Sair
-                </button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -348,7 +321,7 @@ $pagina = 'frades';
         $('#cpf-dados').text(cpf);
         $('#telefone-dados').text(telefone);
         $('#endereco-dados').text(endereco);
-        $('#foto-dados').attr('src','../src/images/membros/' + foto);
+        $('#foto-dados').attr('src', '../src/images/membros/' + foto);
 
         var myModal = new bootstrap.Modal(document.getElementById('modalDados'), {});
         myModal.show();
