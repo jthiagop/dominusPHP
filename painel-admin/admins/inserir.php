@@ -68,22 +68,24 @@ if ($id == '' || $id == 0) {
     $ult_id = $pdo->lastInsertId();
 
     $query = $pdo->prepare("INSERT INTO usuarios SET nome = :nome, email = :email, 
-        cpf = :cpf, senha = '$cpf', nivel = 'bispo', id_pessoa = '$ult_id' ");
+        cpf = :cpf, senha = '$cpf', nivel = 'bispo', id_pessoa = '$ult_id', foto = '$imagem'  ");
 
     $query->bindValue(":nome", "$nome");
     $query->bindValue(":email", "$email");
     $query->bindValue(":cpf", "$cpf");
     $query->execute();
+
 } else {
     if ($imagem == "sem-foto.jpg") {
         $query = $pdo->prepare("UPDATE $pagina  SET nome = :nome, email = :email, 
         cpf = :cpf, endereco = :endereco, telefone = :telefone where id = '$id'");
     } else {
-
         $query = $pdo->query("SELECT * FROM $pagina  where id = '$id' ");
         $res = $query->fetchAll(PDO::FETCH_ASSOC);
         $foto = $res[0]['foto'];
-        @unlink('../../src/images/membros/' . $foto);
+        if ($foto != "sem-foto.jpg") {
+            @unlink('../../src/images/membros/' . $foto);
+        }
 
         $query = $pdo->prepare("UPDATE $pagina  SET nome = :nome, email = :email, 
         cpf = :cpf, endereco = :endereco, telefone = :telefone, foto = '$imagem' where id = '$id'");
@@ -96,9 +98,13 @@ if ($id == '' || $id == 0) {
     $query->bindValue(":telefone", "$telefone");
     $query->execute();
 
-    $query = $pdo->prepare("UPDATE usuarios SET nome = :nome, email = :email, 
+    if ($imagem == "sem-foto.jpg") {
+        $query = $pdo->prepare("UPDATE usuarios SET nome = :nome, email = :email, 
         cpf = :cpf where id_pessoa = '$id' and nivel = 'bispo'");
-
+    } else {
+        $query = $pdo->prepare("UPDATE usuarios SET nome = :nome, email = :email, 
+        cpf = :cpf, foto = '$imagem' where id_pessoa = '$id' and nivel = 'bispo'");
+    }
     $query->bindValue(":nome", "$nome");
     $query->bindValue(":email", "$email");
     $query->bindValue(":cpf", "$cpf");

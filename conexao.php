@@ -39,7 +39,7 @@ $total_reg = count($res);
 //INSERIR REGISTROS INICIAIS 
 if($total_reg == 0) {
     $pdo->query("INSERT INTO usuarios SET nome = 'Super Administrador', email = '$email_super_adm', 
-        senha = '1234', cpf = '109.824.874-01', nivel = 'bispo', id_pessoa = 1 "
+        senha = '1234', cpf = '109.824.874-01', nivel = 'bispo', id_pessoa = 1, foto = 'sem-foto.jpg' "
     );}
 
 // Criar uma configuração padram. 

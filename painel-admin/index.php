@@ -12,6 +12,11 @@ $cpf_usu = $res[0]['cpf'];
 $email_usu = $res[0]['email'];
 $senha_usu = $res[0]['senha'];
 $nivel_usu = $res[0]['nivel'];
+$foto_usu = $res[0]['foto'];
+
+$query = $pdo->query("SELECT * FROM usuarios where id = '$id_usuario' ");
+$res = $query->fetchAll(PDO::FETCH_ASSOC);
+
 
 //MENU DO PAINEL
 $pag = @$_GET['pag'];
@@ -36,7 +41,7 @@ if ($pag == '') {
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-	
+
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 	<!-- CSS -->
@@ -61,18 +66,21 @@ if ($pag == '') {
 	</script>
 	<!-- Google Tag Manager -->
 	<script>
-			(function (w, d, s, l, i) {
-				w[l] = w[l] || [];
-				w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-				var f = d.getElementsByTagName(s)[0],
-					j = d.createElement(s),
-					dl = l != "dataLayer" ? "&l=" + l : "";
-				j.async = true;
-				j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-				f.parentNode.insertBefore(j, f);
-			})(window, document, "script", "dataLayer", "GTM-NXZMQSS");
-		</script>
-		<!-- End Google Tag Manager -->
+		(function(w, d, s, l, i) {
+			w[l] = w[l] || [];
+			w[l].push({
+				"gtm.start": new Date().getTime(),
+				event: "gtm.js"
+			});
+			var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s),
+				dl = l != "dataLayer" ? "&l=" + l : "";
+			j.async = true;
+			j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+			f.parentNode.insertBefore(j, f);
+		})(window, document, "script", "dataLayer", "GTM-NXZMQSS");
+	</script>
+	<!-- End Google Tag Manager -->
 </head>
 
 <body>
@@ -206,7 +214,7 @@ if ($pag == '') {
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 						<span class="user-icon">
-							<img src="../vendors/images/logo.png" alt="" />
+							<img src="../src/images/membros/<?php echo @$foto_usu ?>" alt="" class=""/>
 						</span>
 						<span class="user-name"><?php echo $nome_usu ?></span>
 					</a>
@@ -333,7 +341,7 @@ if ($pag == '') {
 </html>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="text-primary" id="exampleModalLabel">Editar Dados</h5>
@@ -346,44 +354,61 @@ if ($pag == '') {
 					<small>
 						<div id="msg-usu"></div>
 					</small>
-					<input type="hidden" name="id_usu" value="<?php echo $id_usuario ?>">
-					<div class="input-group custom">
-						<input type="text" id="nome_usu" name="nome_usu" class="form-control form-control-lg" placeholder="Nome" value="<?php echo $nome_usu ?>" required />
-						<div class="input-group-append custom">
-							<span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
-						</div>
-					</div>
-					<div class="input-group custom">
-						<input type="text" id="cpf_usu" name="cpf_usu" class="form-control form-control-lg" placeholder="Digite o CPF" value="<?php echo $cpf_usu ?>" required />
-						<div class="input-group-append custom">
-							<span class="input-group-text"><i class="icon-copy bi bi-card-text"></i></i></span>
-						</div>
-					</div>
-					<div class="input-group custom">
-						<input type="email" id="email_usu" name="email_usu" class="form-control form-control-lg" placeholder="name@exemple.com.br" value="<?php echo $email_usu ?>" required />
-						<div class="input-group-append custom">
-							<span class="input-group-text">
-								<i class="icon-copy bi bi-envelope"></i>
-							</span>
-						</div>
-					</div>
-					<div class="row pb-30">
-						<div class="col-12">
-							<div class="input-group custom">
-								<input type="senha" id="senha_usu" name="senha_usu" class="form-control form-control-lg" placeholder="Digite a senha" value="<?php echo $senha_usu ?>" required />
-								<div class="input-group-append custom">
-									<span class="input-group-text"><i class="dw dw-padlock1"></i></span>
-								</div>
+					<div class="row">
+						<div class="col-md-3 col-sm-12">
+							<div class="profile-photo" id="divImg">
+								<img src="../src/images/membros/<?php echo @$foto_usu ?>" id="target-usu" alt="Foto de Perfil" class=" my-2 profile-photo avatar-photo img-thumbnail" />
+								<input type="file" class="form-control-file" id="imagem-usu" name="imagem" onChange="carregarImg2();">
 							</div>
 						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn-fechar-usu">Sair</button>
-						<button type="submit" class="btn btn-primary">Salvar</button>
-					</div>
-				</form>
+						<div class="col-md-9 col-sm-12">
+							<div class="row">
+								<input type="hidden" name="id_usu" value="<?php echo $id_usuario ?>">
+								<div class="col-sm-12">
+									<div class="input-group custom">
+										<input type="text" id="nome_usu" name="nome_usu" class="form-control form-control-lg" placeholder="Nome" value="<?php echo $nome_usu ?>" required />
+										<div class="input-group-append custom">
+											<span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12">
+									<div class="input-group custom">
+										<input type="text" id="cpf_usu" name="cpf_usu" class="form-control form-control-lg" placeholder="Digite o CPF" value="<?php echo $cpf_usu ?>" required />
+										<div class="input-group-append custom">
+											<span class="input-group-text"><i class="icon-copy bi bi-card-text"></i></i></span>
+										</div>
+									</div>
+								</div>
 
-				
+								<div class="col-sm-12">
+									<div class="input-group custom">
+										<input type="email" id="email_usu" name="email_usu" class="form-control form-control-lg" placeholder="name@exemple.com.br" value="<?php echo $email_usu ?>" required />
+										<div class="input-group-append custom">
+											<span class="input-group-text">
+												<i class="icon-copy bi bi-envelope"></i>
+											</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-sm-12">
+									<div class="input-group custom">
+										<input type="senha" id="senha_usu" name="senha_usu" class="form-control form-control-lg" placeholder="Digite a senha" value="<?php echo $senha_usu ?>" required />
+										<div class="input-group-append custom">
+											<span class="input-group-text"><i class="dw dw-padlock1"></i></span>
+										</div>
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn-fechar-usu">Sair</button>
+							<button type="submit" class="btn btn-primary">Salvar</button>
+						</div>
+				</form>
 			</div>
 		</div>
 	</div>
