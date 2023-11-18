@@ -8,6 +8,7 @@ $cpf = $_POST['cpf'];
 $email = $_POST['email'];
 $endereco = $_POST['endereco'];
 $telefone = $_POST['telefone'];
+$data_nasc = $_POST['data_nasc'];
 $id = @$_POST['id'];
 
 
@@ -57,7 +58,8 @@ if ($ext == 'png' or $ext == 'jpg' or $ext == 'jpeg' or $ext == 'gif') {
 
 if ($id == '' || $id == 0) {
     $query = $pdo->prepare("INSERT INTO $pagina  SET nome = :nome, email = :email, 
-        cpf = :cpf, endereco = :endereco, telefone = :telefone, foto = '$imagem' ");
+        cpf = :cpf, endereco = :endereco, telefone = :telefone, foto = '$imagem',
+        data_nasc = '$data_nasc', data_cad = curDate() ");
 
     $query->bindValue(":nome", "$nome");
     $query->bindValue(":email", "$email");
@@ -78,7 +80,8 @@ if ($id == '' || $id == 0) {
 } else {
     if ($imagem == "sem-foto.jpg") {
         $query = $pdo->prepare("UPDATE $pagina  SET nome = :nome, email = :email, 
-        cpf = :cpf, endereco = :endereco, telefone = :telefone where id = '$id'");
+        cpf = :cpf, endereco = :endereco, telefone = :telefone, 
+        data_nasc = '$data_nasc' where id = '$id'");
     } else {
         $query = $pdo->query("SELECT * FROM $pagina  where id = '$id' ");
         $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -88,7 +91,8 @@ if ($id == '' || $id == 0) {
         }
 
         $query = $pdo->prepare("UPDATE $pagina  SET nome = :nome, email = :email, 
-        cpf = :cpf, endereco = :endereco, telefone = :telefone, foto = '$imagem' where id = '$id'");
+        cpf = :cpf, endereco = :endereco, telefone = :telefone, foto = '$imagem',
+        data_nasc = '$data_nasc' where id = '$id'");
     }
 
     $query->bindValue(":nome", "$nome");

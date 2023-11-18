@@ -66,7 +66,13 @@ $pagina = 'frades';
                                 $endereco = $res[$i]['endereco'];
                                 $telefone = $res[$i]['telefone'];
                                 $foto = $res[$i]['foto'];
+                                $data_nasc = $res[$i]['data_nasc'];
+                                $data_cad = $res[$i]['data_cad'];
                                 $id = $res[$i]['id'];
+
+                                $data_nascF = implode('/', array_reverse(explode('-', $data_nasc)));
+                                $data_cadF = implode('/', array_reverse(explode('-', $data_cad)));
+
                             ?>
                                 <tr>
                                     <td>
@@ -93,6 +99,7 @@ $pagina = 'frades';
                                                     '<?php echo $telefone ?>', 
                                                     '<?php echo $endereco ?>',
                                                     '<?php echo $foto ?>',
+                                                    '<?php echo $data_nasc ?>',                                            
                                                     )" title="Editar Registro"><i class="dw dw-edit2" data-color="#265ed7"></i></a>
                                             <a href="#" onclick="excluir('<?php echo $id ?>', '<?php echo $nome ?>')" title="Excluir Registro"><i class="dw dw-delete-3" data-color="#e95959"></i> </a>
                                             <a href="#" onclick="dados(
@@ -102,6 +109,8 @@ $pagina = 'frades';
                                                     '<?php echo $telefone ?>', 
                                                     '<?php echo $endereco ?>',
                                                     '<?php echo $foto ?>',
+                                                    '<?php echo $data_nascF ?>',
+                                                    '<?php echo $data_cadF ?>',
                                                     )" title="Ver Registro"><text-info class="icon-copy bi bi-info-circle text-info"></i> </a>
                                         </div>
                                     </td>
@@ -186,12 +195,17 @@ $pagina = 'frades';
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-8">
                                     <div class="input-group custom">
                                         <input type="text" id="endereco" name="endereco" class="form-control form-control-lg" placeholder="Digite o Endereço" required />
                                         <div class="input-group-append custom">
                                             <span class="input-group-text"><i class="icon-copy fa fa-map-o" aria-hidden="true"></i></span>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group custom">
+                                        <input type="date" id="data_nasc" name="data_nasc" value="<?php echo date('Y-m-d') ?>" class="form-control form-control-lg"required />
                                     </div>
                                 </div>
                                 <input type="hidden" id="id" name="id">
@@ -241,12 +255,12 @@ $pagina = 'frades';
 <div class="modal fade" id="modalDados" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="login-box bg-white box-shadow border-radius-10">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    ×
-                </button>
-                <h4 class="text-center text-primary">
-                    Informações de Registro
-                </h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                ×
+            </button>
+            <h4 class="text-center text-primary">
+                Informações de Registro
+            </h4>
             <div class="modal-body pd-5">
                 <div class="profile-photo" id="divImg">
                     <img src="../src/images/membros/<?php echo $foto ?>" id="foto-dados" alt="Foto de Perfil" class=" my-2 profile-photo avatar-photo img-thumbnail" width="500px" />
@@ -259,21 +273,36 @@ $pagina = 'frades';
                 </p>
                 <div class="profile-info">
                     <ul>
-                        <li>
-                            <span>Email:</span>
-                            <p class="text-muted mb-0" id="email-dados"></p                        </li>
-                        <li>
-                            <span>Telefone:</span>
-                            <p class="text-muted mb-0" id="telefone-dados"></p>
-                        </li>
-                        <li>
-                            <span>CPF:</span>
-                            <p class="text-muted mb-0" id="cpf-dados"></p>
-                        </li>
-                        <li>
-                            <span>Endereço: <div class="text-muted mb-0" id="endereco-dados"></div></span>
-                            
-                        </li>
+                        <div class="row">
+                            <li class="col-md-6 col-sm-12">
+                                <span>Email:</span>
+                                <p class="text-muted mb-0" id="email-dados"></p>
+                            </li>
+                            <li class="col-md-6 col-sm-12">
+                                <span>Telefone:</span>
+                                <p class="text-muted mb-0" id="telefone-dados"></p>
+                            </li>
+                        </div>
+                        <div class="row">
+                            <li class="col-md-6 col-sm-12">
+                                <span>CPF:</span>
+                                <p class="text-muted mb-0" id="cpf-dados"></p>
+                            </li>
+                            <li class="col-md-6 col-sm-12">
+                                <span>Endereço:</span> 
+                                    <p class="text-muted mb-0" id="endereco-dados"></p>
+                            </li>
+                        </div>
+                        <div class="row">
+                            <li class="col-md-6 col-sm-12">
+                                <span>Nascimento:</span>
+                                <p class="text-muted mb-0" id="data_nasc"><?php echo $data_nascF ?></p>
+                            </li>
+                            <li class="col-md-6 col-sm-12">
+                                <span>Cadastro:</span> 
+                                    <p class="text-muted mb-0" id="data_cad"><?php echo $data_cad ?></p>
+                            </li>
+                        </div>
                     </ul>
                 </div>
                 <div class="row">
@@ -283,7 +312,7 @@ $pagina = 'frades';
 																use code for form submit
 																<input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
 															-->
-                            <button class="btn btn-primary btn-lg btn-block" >Sair</button>
+                            <button class="btn btn-primary btn-lg btn-block">Sair</button>
                         </div>
                     </div>
                 </div>
@@ -299,13 +328,14 @@ $pagina = 'frades';
 <script src="../src/scripts/ajax.js"></script>
 
 <script type="text/javascript">
-    function editar(id, nome, email, cpf, telefone, endereco, foto) {
+    function editar(id, nome, email, cpf, telefone, endereco, foto, data_nasc) {
         $('#id').val(id);
         $('#nome').val(nome);
         $('#email').val(email);
         $('#cpf').val(cpf);
         $('#telefone').val(telefone);
         $('#endereco').val(endereco);
+        $('#data_nasc').val(data_nasc);
         $('#target').attr('src', '../src/images/membros/' + foto);
 
 
@@ -315,12 +345,13 @@ $pagina = 'frades';
         $('#mensagem').text('');
     }
 
-    function dados(nome, email, cpf, telefone, endereco, foto) {
+    function dados(nome, email, cpf, telefone, endereco, foto, data_nasc, data_cad) {
         $('#nome-dados').text(nome);
         $('#email-dados').text(email);
         $('#cpf-dados').text(cpf);
         $('#telefone-dados').text(telefone);
         $('#endereco-dados').text(endereco);
+        $('#data_cad').text(data_cad);
         $('#foto-dados').attr('src', '../src/images/membros/' + foto);
 
         var myModal = new bootstrap.Modal(document.getElementById('modalDados'), {});
