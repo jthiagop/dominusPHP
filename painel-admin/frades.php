@@ -68,8 +68,12 @@ $pagina = 'frades';
                                 $foto = $res[$i]['foto'];
                                 $data_nasc = $res[$i]['data_nasc'];
                                 $data_cad = $res[$i]['data_cad'];
+                                $obs = $res[$i]['obs'];
                                 $id = $res[$i]['id'];
 
+                                //retirar quebra de texto do obs
+                                $obs = str_replace(array("\n", "\r"), ' + ', $obs);
+                                
                                 $data_nascF = implode('/', array_reverse(explode('-', $data_nasc)));
                                 $data_cadF = implode('/', array_reverse(explode('-', $data_cad)));
 
@@ -111,7 +115,12 @@ $pagina = 'frades';
                                                     '<?php echo $foto ?>',
                                                     '<?php echo $data_nascF ?>',
                                                     '<?php echo $data_cadF ?>',
-                                                    )" title="Ver Registro"><text-info class="icon-copy bi bi-info-circle text-info"></i> </a>
+                                                    )" title="Ver Registro"><i class="icon-copy bi bi-info-circle text-info"></i> </a>
+                                            <a href="#" onclick="obs(
+                                                    '<?php echo $id ?>',
+                                                    '<?php echo $nome ?>',
+                                                    '<?php echo $obs ?>'
+                                                    )" title="Observações"><i class="icon-copy bi bi-chat-text"></i> </a>
                                         </div>
                                     </td>
                                 </tr>
@@ -132,6 +141,55 @@ $pagina = 'frades';
         2023 &copy; Dominus Sistema de Automação - Todos os direitos reservados - v1.0.1.03
     </div>
 </div>
+
+<!-- add task popup start -->
+<div class="modal fade customscroll" id="modalObs" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                    Observações - <span id="nome-obs"></span>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Close Modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="form-obs" method="post">
+                <div class="modal-body pd-0">
+                    <small>
+                        <div id="mensagem-obs"></div>
+                    </small>
+                    <div class="task-list-form">
+                        <ul>
+                            <li>
+
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="exampleFormControlInput1">Observações </label>
+                                        <textarea id="obs" name="obs" maxlength="500" class="form-control"></textarea>
+                                        <small><p class="text-right">(Maxímo 500 Caracteres)</p></small>
+                                    </div>
+                                </div>
+
+                                <input type="hidden" id="id-obs" name="id-obs">
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        Sair
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Salvar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- add task popup End -->
 
 <!-- Modal -->
 <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
@@ -158,7 +216,7 @@ $pagina = 'frades';
                         <div class="col-md-9 col-sm-12">
                             <div class="row">
                                 <div class="col-md-7 col-sm-12">
-                                <label>Nome: </label>
+                                    <label>Nome: </label>
                                     <div class="input-group custom">
                                         <input type="text" id="nome" name="nome" class="form-control form-control-lg" placeholder="Nome e Sobrenome" required />
                                         <div class="input-group-append custom">
@@ -167,7 +225,7 @@ $pagina = 'frades';
                                     </div>
                                 </div>
                                 <div class="col-md-5 col-sm-12">
-                                <label>CPF</label>
+                                    <label>CPF</label>
                                     <div class="input-group custom">
                                         <input type="text" id="cpf" name="cpf" class="form-control form-control-lg" placeholder="Informe o CPF" required />
                                         <div class="input-group-append custom">
@@ -178,7 +236,7 @@ $pagina = 'frades';
                             </div>
                             <div class="row">
                                 <div class="col-md-7 col-sm-12">
-                                <label>E-mail</label>
+                                    <label>E-mail</label>
                                     <div class="input-group custom">
                                         <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="name@exemple.com.br" required />
                                         <div class="input-group-append custom">
@@ -188,7 +246,7 @@ $pagina = 'frades';
                                 </div>
 
                                 <div class="col-md-5 col-sm-12">
-                                <label>Telefone:</label>
+                                    <label>Telefone:</label>
                                     <div class="input-group custom">
                                         <input type="telefone" id="telefone" name="telefone" class="form-control form-control-lg" placeholder="Telefone" required />
                                         <div class="input-group-append custom">
@@ -200,7 +258,7 @@ $pagina = 'frades';
                             </div>
                             <div class="row">
                                 <div class="col-md-7 col-sm-12">
-                                <label>Endereço:</label>
+                                    <label>Endereço:</label>
                                     <div class="input-group custom">
                                         <input type="text" id="endereco" name="endereco" class="form-control form-control-lg" placeholder="Digite o Endereço" required />
                                         <div class="input-group-append custom">
@@ -211,7 +269,7 @@ $pagina = 'frades';
                                 <div class="col-md-5 col-sm-12">
                                     <label>Nascimento: </label>
                                     <div class="input-group custom">
-                                        <input type="date" id="data_nasc" name="data_nasc" value="<?php echo date('Y-m-d') ?>" class="form-control form-control-lg"required />
+                                        <input type="date" id="data_nasc" name="data_nasc" value="<?php echo date('Y-m-d') ?>" class="form-control form-control-lg" required />
                                     </div>
                                 </div>
                                 <input type="hidden" id="id" name="id">
@@ -295,8 +353,8 @@ $pagina = 'frades';
                                 <p class="text-muted mb-0" id="cpf-dados"></p>
                             </li>
                             <li class="col-md-6 col-sm-12">
-                                <span>Endereço:</span> 
-                                    <p class="text-muted mb-0" id="endereco-dados"></p>
+                                <span>Endereço:</span>
+                                <p class="text-muted mb-0" id="endereco-dados"></p>
                             </li>
                         </div>
                         <div class="row">
@@ -305,8 +363,8 @@ $pagina = 'frades';
                                 <p class="text-muted mb-0" id="data_nasc"><?php echo $data_nascF ?></p>
                             </li>
                             <li class="col-md-6 col-sm-12">
-                                <span>Cadastro:</span> 
-                                    <p class="text-muted mb-0" id="data_cad"><?php echo $data_cad ?></p>
+                                <span>Cadastro:</span>
+                                <p class="text-muted mb-0" id="data_cad"><?php echo $data_cad ?></p>
                             </li>
                         </div>
                     </ul>
@@ -363,5 +421,22 @@ $pagina = 'frades';
         var myModal = new bootstrap.Modal(document.getElementById('modalDados'), {});
         myModal.show();
         $('#mensagem').text('');
+    }
+
+    function obs(id, nome, obs) {
+
+        for (let letra of obs) {
+            if (letra === '+') {
+                obs = obs.replace(' +  + ', '\n')
+            }
+        }
+
+        $('#id-obs').val(id);
+        $('#nome-obs').text(nome);
+        $('#obs').val(obs);
+
+        var myModal = new bootstrap.Modal(document.getElementById('modalObs'), {});
+        myModal.show();
+        $('#mensagem-obs').text('');
     }
 </script>

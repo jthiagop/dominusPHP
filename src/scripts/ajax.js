@@ -141,3 +141,38 @@ function carregarImg2() {
             target.src = "";
         }
     }
+
+
+    $("#form-obs").submit(function () {
+        event.preventDefault();
+        var formData = new FormData(this);
+    
+        $.ajax({
+            url: pag + "/obs.php",
+            type: 'POST',
+            data: formData,
+    
+            success: function (mensagem) {
+                $('#mensagem-obs').text('');
+                $('#mensagem-obs').removeClass()
+                if (mensagem.trim() == "Salvo com Sucesso") {
+                        
+                        $('#btn-fechar-obs').click();
+                        window.location="index.php?pag=" + pag;
+    
+                    } else {
+    
+                        $('#mensagem-obs').addClass('text-danger')
+                        $('#mensagem-obs').text(mensagem)
+                    }
+    
+    
+                },
+    
+                cache: false,
+                contentType: false,
+                processData: false,
+                
+            });
+    
+    });
