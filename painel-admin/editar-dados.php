@@ -78,15 +78,26 @@ $query->bindValue(":cpf", "$cpf");
 $query->bindValue(":senha", "$senha");
 $query->execute();
 
+
+//Nivel de Usuário bispo
 if ($nivel_usu == 'bispo') {
-    if ($imagem == "sem-fotos.jpg") {
-        $query2 = $pdo->prepare("UPDATE bispos SET nome = :nome, 
-        email = :email, cpf = :cpf where id = '$id_pessoa'");
-    } else {
-        $query2 = $pdo->prepare("UPDATE bispos SET nome = :nome, 
-    email = :email, cpf = :cpf, foto = '$imagem' where id = '$id_pessoa'");
-    }
+    $nome_tab = 'bispos';
+}else if($nivel_usu == 'frade') {
+    $nome_tab = 'frades';
+}else if($nivel_usu == 'tesoureiro') {
+    $nome_tab = 'tesoureiros';
+}else if($nivel_usu == 'secretario'){
+    $nome_tab = 'secreatarios';
 }
+
+if ($imagem == "sem-fotos.jpg") {
+    $query2 = $pdo->prepare("UPDATE $nome_tab SET nome = :nome, 
+    email = :email, cpf = :cpf where id = '$id_pessoa'");
+} else {
+    $query2 = $pdo->prepare("UPDATE $nome_tab SET nome = :nome, 
+email = :email, cpf = :cpf, foto = '$imagem' where id = '$id_pessoa'");
+}
+
 
 $query2->bindValue(":nome", "$nome");
 $query2->bindValue(":email", "$email");

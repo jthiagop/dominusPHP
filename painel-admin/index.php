@@ -280,14 +280,14 @@ if ($pag == '') {
 						</a>
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon icon-copy bi bi-person"></span>
+							<span class="micon icon-copy bi bi-people"></span>
 							<span class="mtext">Pessoas</span>
 						</a>
 						<ul class="submenu">
 							<li><a href="index.php?pag=admins">Administrador</a></li>
 							<li><a href="index.php?pag=frades">Frades</a></li>
-							<li><a href="index2.html">Usuários</a></li>
-							<li><a href="index3.html">Dashboard style 3</a></li>
+							<li><a href="index.php?pag=secretarios">Secretarios</a></li>
+							<li><a href="index.php?pag=tesoureiros">Tesoureiros</a></li>
 						</ul>
 					</li>
 				</ul>

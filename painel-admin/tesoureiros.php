@@ -1,7 +1,7 @@
 <?php
 require_once('../conexao.php');
 require_once('verificar.php');
-$pagina = 'frades';
+$pagina = 'tesoureiros';
 ?>
 
 <div class="min-height-200px">
@@ -14,7 +14,7 @@ $pagina = 'frades';
                             <a href="index.php">Home</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Frades
+                            Tesoureiros
                         </li>
                     </ol>
                 </nav>
@@ -22,7 +22,7 @@ $pagina = 'frades';
             <div class="col-md-6 col-sm-12 text-right">
                 <div class="dropdown">
                     <a class="btn btn-primary icon-copy bi bi-person-plus-fill" href="#" type="button" onclick="inserir()" data-toggle="modal" data-target="#modalForm">
-                        Novo Frade
+                        Novo Tesoureiros
                     </a>
                 </div>
             </div>
@@ -38,7 +38,7 @@ $pagina = 'frades';
             <!-- Simple Datatable Simples -->
             <div class="card-box mb-30">
                 <div class="pd-20">
-                    <h4 class="text-blue h4">Registro de Frades</h4>
+                    <h4 class="text-blue h4">Registro de Tesoureiros</h4>
                 </div>
                 <div class="pb-20">
                     <table id="administradores" class="data-table table stripe hover nowrap">
