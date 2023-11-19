@@ -1,7 +1,7 @@
 <?php
 require_once('../../conexao.php');
 
-$pagina = 'frades';
+$pagina = 'organismos';
 
 $obs = $_POST['obs'];
 $id = @$_POST['id-obs'];

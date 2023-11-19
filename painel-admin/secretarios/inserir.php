@@ -74,7 +74,8 @@ if ($id == '' || $id == 0) {
     $ult_id = $pdo->lastInsertId();
 
     $query = $pdo->prepare("INSERT INTO usuarios SET nome = :nome, email = :email, 
-        cpf = :cpf, senha = '$cpf', nivel = 'secretarios', id_pessoa = '$ult_id', foto = '$imagem'  ");
+        cpf = :cpf, senha = '$cpf', nivel = 'secretarios', 
+        id_pessoa = '$ult_id', foto = '$imagem', organismo = '$id_organismo' ");
 
     $query->bindValue(":nome", "$nome");
     $query->bindValue(":email", "$email");

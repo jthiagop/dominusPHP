@@ -353,8 +353,8 @@ $pagina = 'frades';
                                 <p class="text-muted mb-0" id="cpf-dados"></p>
                             </li>
                             <li class="col-md-6 col-sm-12">
-                                <span>Endereço:</span>
-                                <p class="text-muted mb-0" id="endereco-dados"></p>
+                                <span>Endereço:</span> 
+                                    <p class="text-muted mb-0" id="endereco-dados"></p>
                             </li>
                         </div>
                         <div class="row">
@@ -363,8 +363,8 @@ $pagina = 'frades';
                                 <p class="text-muted mb-0" id="data_nasc"><?php echo $data_nascF ?></p>
                             </li>
                             <li class="col-md-6 col-sm-12">
-                                <span>Cadastro:</span>
-                                <p class="text-muted mb-0" id="data_cad"><?php echo $data_cad ?></p>
+                                <span>Cadastro:</span> 
+                                    <p class="text-muted mb-0" id="data_cad"><?php echo $data_cad ?></p>
                             </li>
                         </div>
                     </ul>

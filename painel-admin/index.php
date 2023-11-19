@@ -288,6 +288,16 @@ if ($pag == '') {
 							<li><a href="index.php?pag=frades">Frades</a></li>
 							<li><a href="index.php?pag=secretarios">Secretarios</a></li>
 							<li><a href="index.php?pag=tesoureiros">Tesoureiros</a></li>
+							<li><a href="index.php?pag=usuarios">Usuários</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon icon-copy fa fa-institution"></span>
+							<span class="mtext">Cadastros</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="index.php?pag=organismos">Organismos</a></li>
 						</ul>
 					</li>
 				</ul>
