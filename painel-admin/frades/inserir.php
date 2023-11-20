@@ -9,6 +9,7 @@ $email = $_POST['email'];
 $endereco = $_POST['endereco'];
 $telefone = $_POST['telefone'];
 $data_nasc = $_POST['data_nasc'];
+$organismo = $_POST['organismo'];
 $id = @$_POST['id'];
 
 
@@ -59,7 +60,7 @@ if ($ext == 'png' or $ext == 'jpg' or $ext == 'jpeg' or $ext == 'gif') {
 if ($id == '' || $id == 0) {
     $query = $pdo->prepare("INSERT INTO $pagina  SET nome = :nome, email = :email, 
         cpf = :cpf, endereco = :endereco, telefone = :telefone, foto = '$imagem',
-        data_nasc = '$data_nasc', data_cad = curDate() ");
+        data_nasc = '$data_nasc', data_cad = curDate(), organismo = '$organismo' ");
 
     $query->bindValue(":nome", "$nome");
     $query->bindValue(":email", "$email");
@@ -70,7 +71,8 @@ if ($id == '' || $id == 0) {
     $ult_id = $pdo->lastInsertId();
 
     $query = $pdo->prepare("INSERT INTO usuarios SET nome = :nome, email = :email, 
-        cpf = :cpf, senha = '$cpf', nivel = 'frade', id_pessoa = '$ult_id', foto = '$imagem'  ");
+        cpf = :cpf, senha = '$cpf', nivel = 'frade', id_pessoa = '$ult_id', foto = '$imagem',
+        organismo = '$organismo' ");
 
     $query->bindValue(":nome", "$nome");
     $query->bindValue(":email", "$email");
@@ -81,7 +83,7 @@ if ($id == '' || $id == 0) {
     if ($imagem == "sem-foto.jpg") {
         $query = $pdo->prepare("UPDATE $pagina  SET nome = :nome, email = :email, 
         cpf = :cpf, endereco = :endereco, telefone = :telefone, 
-        data_nasc = '$data_nasc' where id = '$id'");
+        data_nasc = '$data_nasc', organismo = '$organismo' where id = '$id'");
     } else {
         $query = $pdo->query("SELECT * FROM $pagina  where id = '$id' ");
         $res = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -92,7 +94,7 @@ if ($id == '' || $id == 0) {
 
         $query = $pdo->prepare("UPDATE $pagina  SET nome = :nome, email = :email, 
         cpf = :cpf, endereco = :endereco, telefone = :telefone, foto = '$imagem',
-        data_nasc = '$data_nasc' where id = '$id'");
+        data_nasc = '$data_nasc', organismo = '$organismo'  where id = '$id'");
     }
 
     $query->bindValue(":nome", "$nome");
@@ -104,10 +106,10 @@ if ($id == '' || $id == 0) {
 
     if ($imagem == "sem-foto.jpg") {
         $query = $pdo->prepare("UPDATE usuarios SET nome = :nome, email = :email, 
-        cpf = :cpf where id_pessoa = '$id' and nivel = 'frade'");
+        cpf = :cpf, organismo = '$organismo' where id_pessoa = '$id' and nivel = 'frade'");
     } else {
         $query = $pdo->prepare("UPDATE usuarios SET nome = :nome, email = :email, 
-        cpf = :cpf, foto = '$imagem' where id_pessoa = '$id' and nivel = 'frade'");
+        cpf = :cpf, foto = '$imagem', , organismo = '$organismo' where id_pessoa = '$id' and nivel = 'frade'");
     }
     $query->bindValue(":nome", "$nome");
     $query->bindValue(":email", "$email");

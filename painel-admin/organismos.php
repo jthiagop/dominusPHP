@@ -463,8 +463,7 @@ $pagina = 'organismos';
             </div>
             <form>
                 <h5 class="text-center h5 mb-0" id="nome-dados"></h5>
-                <p class="text-center text-muted font-14">
-                    Lorem ipsum dolor sit amet
+                <p class="text-center text-muted font-14" id="matriz" name="matriz">
                 </p>
                 <div class="profile-info">
                     <ul>
@@ -550,12 +549,13 @@ $pagina = 'organismos';
         $('#mensagem').text('');
     }
 
-    function dados(nome, email, cpf, telefone, endereco, foto, data_nasc, data_cad) {
+    function dados(nome, email, cpf, telefone, endereco, foto, data_cad, matriz) {
         $('#nome-dados').text(nome);
         $('#email-dados').text(email);
         $('#cpf-dados').text(cpf);
         $('#telefone-dados').text(telefone);
         $('#endereco-dados').text(endereco);
+        $('#matriz').text(matriz);
         $('#data_cad').text(data_cad);
         $('#foto-dados').attr('src', '../src/images/organismos/' + foto);
 

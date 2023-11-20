@@ -44,6 +44,10 @@ if ($pag == '') {
 
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+	<!-- Select2 -->
+	<link rel="stylesheet" type="text/css" href="../src/styles/select2.min.css" />
+
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="../vendors/styles/core.css" />
 	<link rel="stylesheet" type="text/css" href="../vendors/styles/icon-font.min.css" />
@@ -219,7 +223,7 @@ if ($pag == '') {
 						<span class="user-name"><?php echo $nome_usu ?></span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
+						<a class="dropdown-item" href="#" data-backdrop="static" data-toggle="modal" data-target="#exampleModal"><i class="dw dw-user1"></i> Profile</a>
 						<a class="dropdown-item" href="#" data-backdrop="static" data-toggle="modal" data-target="#exampleModal"><i class="dw dw-settings2"></i> Editar</a>
 						<a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Ajuda</a>
 						<a class="dropdown-item" href="../logout.php"><i class="dw dw-logout"></i> Sair</a>
@@ -323,6 +327,9 @@ if ($pag == '') {
 	<script src="../src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
 	<script src="../src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 	<script src="../src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+
+	<!-- Select2 -->
+	<script src="../src/scripts/select2.min.js"></script>
 
 
 	<!-- buttons for Export datatable -->

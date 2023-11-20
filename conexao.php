@@ -71,7 +71,7 @@ if ($total_reg == 0) {
         data_cnpj = '$data_cnpj', data_fundacao = '$data_fundacao', cep = '$cep', 
         rua = '$rua', bairro = '$bairro', cidade = '$cidade',
         uf = '$uf', email = '$email', telefone = '$telefone', foto = 'sem-foto.jpg',
-        data_cad = curDate(), matriz = 'sim' "
+        data_cad = curDate(), matriz = 'Matriz' "
     );
 }
 

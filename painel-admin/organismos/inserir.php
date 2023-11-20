@@ -55,7 +55,7 @@ if ($id == '' || $id == 0) {
     $query = $pdo->prepare("INSERT INTO $pagina  SET razaosocial = :razaosocial, 
         cnpj = :cnpj, cidade = :cidade, cep = :cep, rua = :rua, foto = '$imagem', 
         bairro = :bairro, data_cnpj = :data_cnpj, data_fundacao = :data_fundacao, uf = :uf, 
-        email = :email, telefone = :telefone, data_cad = curDate(), matriz = 'Não' ");
+        email = :email, telefone = :telefone, data_cad = curDate(), matriz = 'Filial' ");
 
     $query->bindValue(":razaosocial", "$razaosocial");
     $query->bindValue(":cnpj", "$cnpj");

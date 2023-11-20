@@ -1,3 +1,10 @@
+// In your Javascript (external .js resource or <script> tag)
+$(document).ready(function() {
+    $('.sel2').select2({
+        dropdownParent: $('#modalForm'),
+    });
+});
+
 function inserir(){
     $('#mansagem').text('');
     $('#tituloModal').text('Inserir Registro');
@@ -176,3 +183,5 @@ function carregarImg2() {
             });
     
     });
+
+
